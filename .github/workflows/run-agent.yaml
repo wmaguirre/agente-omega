@@ -15,8 +15,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Agente Omega Job
-        uses: simple-ai-agent/run@v1
-        with:
-          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
-          brave_api_key: ${{ secrets.BRAVE_API_KEY }}
-          github_token: ${{ secrets.AGENT_GITHUB_TOKEN }}
+        run: |
+          docker run --rm \
+            -e GITHUB_TOKEN=${{ secrets.AGENT_GITHUB_TOKEN }} \
+            -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+            -e BRAVE_API_KEY=${{ secrets.BRAVE_API_KEY }} \
+            -v ./agent.yaml:/app/agent.yaml \
+            -v ./job.yaml:/app/job.yaml \
+            -v ./:/app/output \
+            ghcr.io/thepope/thepope:main
