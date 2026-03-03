@@ -1,0 +1,10 @@
+name: agente-omega
+description: Un agente de IA diseñado para realizar tareas de investigación y reporte de forma autónoma.
+
+llm:
+  provider: openai
+  model: gpt-4-turbo
+
+tools:
+    - id: web_search
+    use: brave-search

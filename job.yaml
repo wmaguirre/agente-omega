@@ -1,0 +1,9 @@
+name: Reporte de Noticias Diario
+description: Genera un reporte con las 10 noticias más importantes del día en España.
+
+instructions:
+    - "Utiliza tu herramienta de búsqueda web para identificar las 10 noticias más importantes y recientes de hoy en España. Prioriza fuentes de noticias confiables y reconocidas."
+    - "Para cada una de las 10 noticias, extrae el titular exacto, un resumen de uno o dos párrafos y el enlace URL a la fuente original."
+    - "Formatea los resultados en un único archivo Markdown llamado `reporte_noticias.md`."
+    - "La estructura del archivo debe ser clara, usando encabezados de Markdown para cada noticia (por ejemplo, `## 1. Titular de la Noticia`) y enlaces funcionales."
+    - "Asegúrate de que la información es actual, relevante para el día de hoy, y está bien organizada antes de finalizar la tarea."
