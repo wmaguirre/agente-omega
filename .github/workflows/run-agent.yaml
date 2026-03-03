@@ -1,34 +1,22 @@
 name: Run Agente Omega
 
-# Esto añade un botón "Run workflow" en la pestaña de Actions de GitHub.
-# Es nuestro disparador manual para la Fase 1 de pruebas.
 on:
   workflow_dispatch:
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
-    
-    # ¡LECCIÓN APRENDIDA #1!
-    # Pedimos los permisos de escritura desde el principio.
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-      # 1. Clona el repositorio para poder leer agent.yaml y job.yaml
-      - name: Checkout Repository
+            - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. ¡La magia! Este es el Agente pre-construido que ejecuta la misión.
-      - name: Run Agente Omega Job
+            - name: Run Agente Omega Job
         uses: simple-ai-agent/run@v1
         with:
-          # ¡LECCIÓN APRENDIDA #2!
-          # Le pasamos las claves de forma limpia y directa.
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           brave_api_key: ${{ secrets.BRAVE_API_KEY }}
-          
-          # ¡LECCIÓN APRENDIDA #3!
-          # Usamos un token con permisos elevados para evitar errores.
           github_token: ${{ secrets.AGENT_GITHUB_TOKEN }}
