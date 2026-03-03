@@ -11,10 +11,10 @@ jobs:
       pull-requests: write
 
     steps:
-            - name: Checkout Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-            - name: Run Agente Omega Job
+      - name: Run Agente Omega Job
         uses: simple-ai-agent/run@v1
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
