@@ -9,20 +9,18 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      packages: read   # <--- ¡NUEVA LLAVE! Permiso para leer paquetes.
+      packages: read
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # v--- ¡NUEVO PASO! Iniciar sesión en el registro de paquetes. ---v
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      # ^--- Fin del nuevo paso. ---^
 
       - name: Run Agente Omega Job
         run: |
@@ -33,4 +31,4 @@ jobs:
             -v ./agent.yaml:/app/agent.yaml \
             -v ./job.yaml:/app/job.yaml \
             -v ./:/app/output \
-            ghcr.io/thepope/thepope:main
+            ghcr.io/thepope/thepopebot:main # <--- ¡¡AQUÍ ESTÁ LA CORRECCIÓN!!
