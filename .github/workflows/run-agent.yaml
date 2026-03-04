@@ -23,4 +23,18 @@ jobs:
           echo "descripcion: Un agente de IA diseñado para realizar tareas de investigación y reporte." >> superagi_config/agent.yaml
           echo "objetivo:" >> superagi_config/agent.yaml
           echo "- Utiliza tu herramienta de búsqueda web para identificar las 10 noticias más importantes y recientes de hoy en España." >> superagi_config/agent.yaml
-          echo "- Para cada noticia, extrae el titular, un resumen y la URL." >> superagi_config/
+          echo "- Para cada noticia, extrae el titular, un resumen y la URL." >> superagi_config/agent.yaml
+          echo "- Formatea los resultados en un único archivo Markdown llamado 'reporte_noticias.md' en la carpeta de salida." >> superagi_config/agent.yaml
+          echo "herramientas:" >> superagi_config/agent.yaml
+          echo "- nombre: DuckDuckGo" >> superagi_config/agent.yaml
+
+      - name: Run SuperAGI Engine
+        run: |
+          docker run --rm \
+            -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+            -e GITHUB_APP_CLIENT_ID="dummy" \
+            -e GITHUB_APP_CLIENT_SECRET="dummy" \
+            -v $(pwd)/config.yaml:/app/config.yaml \
+            -v $(pwd)/superagi_config:/app/superagi_config \
+            -v $(pwd)/output:/app/output \
+            superagi/superagi:latest --config-file /app/config.yaml --agent-config-file /app/superagi_config/agent.yaml
