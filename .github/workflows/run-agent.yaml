@@ -31,4 +31,4 @@ jobs:
             -v ./agent.yaml:/app/agent.yaml \
             -v ./job.yaml:/app/job.yaml \
             -v ./:/app/output \
-            ghcr.io/thepope/thepope-bot:latest # <--- ¡¡AQUÍ ESTÁ LA CORRECCIÓN!!
+            ghcr.io/thepope/the-pope-bot:latest # <--- ¡¡AQUÍ ESTÁ LA CORRECCIÓN!!
